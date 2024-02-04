@@ -32,6 +32,6 @@ namespace WebAPIConsultaCEP.Services
 
         }
 
-        private void SetUri(string cep) => this._httpClient.BaseAddress = new URI($"{this._endpoint}{cep}/json/");
+        private void SetUri(string cep) => this._httpClient.BaseAddress = new Uri($"{this._endpoint}{cep}/json/");
     }
 }
