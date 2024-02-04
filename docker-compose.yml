@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webapiconsultacep:
+    image: ${DOCKER_REGISTRY-}webapiconsultacep
+    build:
+      context: .
+      dockerfile: WebAPIConsultaCEP/Dockerfile
