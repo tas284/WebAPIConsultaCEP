@@ -1,7 +1,9 @@
-﻿namespace WebAPIConsultaCEP.Interfaces
+﻿using WebAPIConsultaCEP.Models;
+
+namespace WebAPIConsultaCEP.Interfaces
 {
-    public interface ICepService
+    public interface ICep
     {
-        public Task<HttpResponseMessage> GetCepAsync(string cep);
+        public Task<CepViewModel> GetCepAsync(string cep);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using WebAPIConsultaCEP.Interfaces;
+using WebAPIConsultaCEP.Models;
 
 namespace WebAPIConsultaCEP.Controllers
 {
@@ -8,9 +8,9 @@ namespace WebAPIConsultaCEP.Controllers
     [Route("api/[controller]")]
     public class CepController : ControllerBase
     {
-        private readonly ICepService _service;
+        private readonly ICep _service;
 
-        public CepController(ICepService service)
+        public CepController(ICep service)
         {
             _service = service;
         }
@@ -18,18 +18,15 @@ namespace WebAPIConsultaCEP.Controllers
         [HttpGet]
         public async Task<ActionResult> Get(string cep)
         {
-            var response = await _service.GetCepAsync(cep);
-
-            if(response.StatusCode == HttpStatusCode.OK)
+            try
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                return Ok(result);
+                var response = await _service.GetCepAsync(cep);
+                return Ok(response);
             }
-            if (response.StatusCode == HttpStatusCode.BadRequest)
+            catch (Exception)
+            {
                 return BadRequest("Cep inválido! Verifique o CEP informado.");
-
-
-            return NotFound();
+            }
         }
     }
 }

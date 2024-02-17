@@ -3,7 +3,7 @@ using WebAPIConsultaCEP.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ICepService, ViaCEPService>();
+builder.Services.AddScoped<ICep, ViaCEPService>();
 builder.Services.AddScoped<HttpClient>();
 
 builder.Services.AddControllers();
